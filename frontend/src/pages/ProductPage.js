@@ -9,6 +9,7 @@ export default function ProductPage(props) {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const productId = props.match.params.id;
 
@@ -31,6 +32,10 @@ export default function ProductPage(props) {
 
     fetchDetailProduct();
   }, [productId]);
+
+  const handleAddToCart = () => {
+    props.history.push(`/cart/${productId}?qty=${quantity}`);
+  };
 
   return (
     <>
@@ -78,8 +83,27 @@ export default function ProductPage(props) {
                   <span className="text-red-500">Unavailable</span>
                 )}
               </div>
+              <div className="w-full flex justify-between px-2 pb-2">
+                {product.countInStock > 0 && (
+                  <>
+                    <span>Quantity</span>
+                    <select
+                      className="border-2 border-gray-400 rounded"
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
+                    >
+                      {[...Array(product.countInStock).keys()].map((val) => (
+                        <option key={val + 1} value={val + 1}>{val + 1}</option>
+                      ))}
+                    </select>
+                  </>
+                )}
+              </div>
               <div className="px-2">
-                <button className="w-full py-2 bg-yellow-300 rounded">
+                <button
+                  className="w-full py-2 bg-yellow-300 rounded"
+                  onClick={handleAddToCart}
+                >
                   Add to cart
                 </button>
               </div>

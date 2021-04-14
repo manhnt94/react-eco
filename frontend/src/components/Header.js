@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Header(props) {
+  const { cart } = useSelector((state) => state);
+  const { cartItems } = cart;
+
   return (
     <header className="header bg-header h-14 mb-4">
       <div className="header__wrapper h-full flex justify-between pr-4">
@@ -11,7 +15,9 @@ export default function Header(props) {
           </Link>
         </div>
         <div className="flex items-center">
-          <Link to="/" className="text-white">Cart</Link>
+          <Link to="/cart" className="text-white">
+            Cart {cartItems.length && cartItems.length}
+          </Link>
           <Link to="/" className="pl-6 text-white">
             Sign in
           </Link>
