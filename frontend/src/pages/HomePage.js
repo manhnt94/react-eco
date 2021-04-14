@@ -20,7 +20,7 @@ export default function HomePage(props) {
       {loading ? (
         <Loading />
       ) : error ? (
-        <Message />
+        <Message error>{error}</Message>
       ) : (
         <div className="px-8 grid grid-cols-4 gap-8">
           {products.map((product) => {

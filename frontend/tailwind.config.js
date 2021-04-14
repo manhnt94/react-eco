@@ -7,6 +7,10 @@ module.exports = {
         ...theme("colors"),
         header: "#232f3e",
       }),
+      flex: {
+        "0035": "0 0 35%",
+        "0025": "0 0 25%",
+      }
     },
   },
   variants: {
