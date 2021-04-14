@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 import ProductPage from "./pages/ProductPage";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Switch>
+        <Route path="/signin" component={LoginPage} />
         <Route path="/cart/:id?" component={CartPage} />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/" component={HomePage} />

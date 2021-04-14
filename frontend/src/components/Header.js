@@ -1,10 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { signout } from "../actions/userActions";
 
 export default function Header(props) {
   const { cart } = useSelector((state) => state);
+  const { userSignin } = useSelector((state) => state);
   const { cartItems } = cart;
+  const { userInfo } = userSignin;
+  const dispatch = useDispatch();
+
+  const handleSignout = () => {
+    dispatch(signout());
+  };
 
   return (
     <header className="header bg-header h-14 mb-4">
@@ -18,9 +26,15 @@ export default function Header(props) {
           <Link to="/cart" className="text-white">
             Cart {cartItems.length && cartItems.length}
           </Link>
-          <Link to="/" className="pl-6 text-white">
-            Sign in
-          </Link>
+          {userInfo ? (
+            <Link to="#" className="pl-6 text-white" onClick={handleSignout}>
+              Sigout
+            </Link>
+          ) : (
+            <Link to="/signin" className="pl-6 text-white">
+              Sign in
+            </Link>
+          )}
         </div>
       </div>
     </header>
