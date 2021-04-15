@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, listProducts } from "../actions/productActions";
 import Loading from "../components/Loading";
@@ -16,13 +16,11 @@ export default function ProductListPage(props) {
     product: createdProduct,
   } = productCreate;
   const dispatch = useDispatch();
-  console.log("outside useeffect")
+
   useEffect(() => {
     // Generate new product success then edit
     if (successCreate) {
-        console.log("before dispatch")
       dispatch({ type: PRODUCT_CREATE_RESET });
-      console.log("after dispatch");
       props.history.push(`/product/${createdProduct.product._id}/edit`);
     }
     dispatch(listProducts());
