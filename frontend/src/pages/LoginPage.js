@@ -17,7 +17,6 @@ export default function LoginPage(props) {
 
   useEffect(() => {
     if (userInfo) {
-        console.log("huhu")
       props.history.push(redirect);
     }
   }, [props.history, redirect, userInfo]);
@@ -65,7 +64,7 @@ export default function LoginPage(props) {
           </button>
         </div>
         <div className="mb-4">
-          <Link to="/">Create your account</Link>
+          <Link to={`/register?redirect=${redirect}`}>Create your account</Link>
         </div>
       </form>
     </div>
