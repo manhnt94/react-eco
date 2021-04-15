@@ -2,6 +2,7 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
 import Product from "../models/productModel.js";
+import { isAdmin, isAuth } from "../utils.js";
 
 const productRouter = express.Router();
 
@@ -31,6 +32,28 @@ productRouter.get(
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }
+  })
+);
+
+// Generate new Product
+productRouter.post(
+  "/",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = new Product({
+      name: "samle name " + Date.now(),
+      image: "/images/img-product.jpg",
+      price: 0,
+      category: "eco category",
+      brand: "eco brand",
+      countInStock: 0,
+      rating: 0,
+      numReviews: 0,
+      description: "eco description",
+    });
+    const createdProduct = await product.save();
+    res.send({ message: "Product Created", product: createdProduct });
   })
 );
 
