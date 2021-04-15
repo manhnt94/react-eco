@@ -35,6 +35,27 @@ export default function Header(props) {
               Sign in
             </Link>
           )}
+          {userInfo && userInfo.isAdmin && (
+            <div className="group relative ml-4 text-white">
+              <Link to="#admin">
+                Admin <i className="fa fa-caret-down"></i>
+              </Link>
+              <ul className="hidden absolute right-0 text-white group-hover:block bg-gray-400 shadow-xl p-2 rounded">
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <Link to="/productlist">Products</Link>
+                </li>
+                <li>
+                  <Link to="/orderlist">Orders</Link>
+                </li>
+                <li>
+                  <Link to="/userlist">Users</Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </header>
