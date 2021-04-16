@@ -102,6 +102,7 @@ export default function ProductPage(props) {
               <div className="px-2">
                 <button
                   className="w-full py-2 bg-yellow-300 rounded"
+                  disabled={product.countInStock > 0 ? false : true}
                   onClick={handleAddToCart}
                 >
                   Add to cart

@@ -23,9 +23,13 @@ export default function HomePage(props) {
         <Message error>{error}</Message>
       ) : (
         <div className="px-8 grid grid-cols-4 gap-8">
-          {products.map((product) => {
-            return <Product key={product._id} product={product} />;
-          })}
+          {products.length > 0 ? (
+            products.map((product) => {
+              return <Product key={product._id} product={product} />;
+            })
+          ) : (
+            <span>hihi</span>
+          )}
         </div>
       )}
     </div>
