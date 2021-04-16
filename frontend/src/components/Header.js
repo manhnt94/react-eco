@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { signout } from "../actions/userActions";
+import SearchBox from "./SearchBox";
 
 export default function Header(props) {
   const { cart } = useSelector((state) => state);
@@ -22,6 +23,7 @@ export default function Header(props) {
             <img src="/images/my-logo.png" alt="My logo" className="" />
           </Link>
         </div>
+        <Route render={({ history }) => <SearchBox history={history} />} />
         <div className="flex items-center">
           <Link to="/cart" className="text-white">
             Cart {cartItems.length && cartItems.length}
